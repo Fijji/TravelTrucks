@@ -1,1 +1,28 @@
+.detailsPage {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
 
+.layout {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 40px;
+}
+
+.layout > * {
+    flex: 1;
+    margin-right: 20px;
+}
+
+.layout > *:last-child {
+    margin-right: 0;
+}
+
+.bookingForm {
+    max-width: 400px;
+    border: 1px solid #e0e0e0;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}

@@ -1,0 +1,25 @@
+.appbar {
+    background-color: #ff6f61;
+    padding: 10px 20px;
+}
+
+.nav-links {
+    display: flex;
+    justify-content: space-between;
+}
+
+.nav-link {
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+    margin-right: 20px;
+}
+
+.nav-link:hover {
+    color: #f5f5f5;
+}
+
+.nav-link.active {
+    font-weight: bold;
+    border-bottom: 2px solid white;
+}
