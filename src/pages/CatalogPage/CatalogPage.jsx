@@ -1,10 +1,10 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchCampers } from "../../redux/campers/campersOperations";
-import CamperCard from "../../components/CamperCard/CamperCard";
+import CampersCatalog from "../../components/CampersCatalog/CampersCatalog";
 import styles from "./CatalogPage.module.css";
-import {selectFilteredCampers} from "../../redux/filters/filtersSelectors.js";
-import {selectCampersError, selectCampersLoading} from "../../redux/campers/campersSelectors.js";
+import { selectFilteredCampers } from "../../redux/filters/filtersSelectors.js";
+import { selectCampersError, selectCampersLoading } from "../../redux/campers/campersSelectors.js";
 import FilterPanel from "../../components/FilterPanel/FilterPanel.jsx";
 
 const CatalogPage = () => {
@@ -31,12 +31,7 @@ const CatalogPage = () => {
                 <FilterPanel />
             </aside>
             <main className={styles.campersList}>
-                <h1>Campers Catalog</h1>
-                <div className={styles.cards}>
-                    {campers.map((camper) => (
-                        <CamperCard key={camper.id} camper={camper} />
-                    ))}
-                </div>
+                <CampersCatalog campers={campers} />
             </main>
         </div>
     );

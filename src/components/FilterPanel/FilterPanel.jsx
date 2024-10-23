@@ -87,7 +87,7 @@ const FilterPanel = () => {
             }`}
             onClick={() => handleFeatureToggle(feature.label)}
           >
-            <FontAwesomeIcon icon={feature.icon} />
+            <FontAwesomeIcon icon={feature.icon} className={styles.typeIcon} />
             <span>{feature.label}</span>
           </button>
         ))}
@@ -107,7 +107,7 @@ const FilterPanel = () => {
             }`}
             onClick={() => handleVehicleTypeChange(type.label)}
           >
-            <FontAwesomeIcon icon={type.icon} />
+            <FontAwesomeIcon icon={type.icon} className={styles.typeIcon} />
             <span>{type.label}</span>
           </button>
         ))}
