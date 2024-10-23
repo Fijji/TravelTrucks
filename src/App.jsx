@@ -5,6 +5,7 @@ import CatalogPage from './pages/CatalogPage/CatalogPage.jsx';
 import CamperDetailsPage from './pages/CamperDetailsPage/CamperDetailsPage.jsx';
 import AppBar from './components/AppBarr/AppBarr.jsx';
 
+
 const App = () => {
     return (
         <>
