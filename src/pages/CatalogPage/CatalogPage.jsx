@@ -1,11 +1,11 @@
-import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { fetchCampers } from '../../redux/campers/campersOperations';
-import {
-    selectFilteredCampers,
-    selectCampersLoading,
-    selectCampersError,
-} from '../../redux/campers/campersSelectors';
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchCampers } from "../../redux/campers/campersOperations";
+import CamperCard from "../../components/CamperCard/CamperCard";
+import styles from "./CatalogPage.module.css";
+import {selectFilteredCampers} from "../../redux/filters/filtersSelectors.js";
+import {selectCampersError, selectCampersLoading} from "../../redux/campers/campersSelectors.js";
+import FilterPanel from "../../components/FilterPanel/FilterPanel.jsx";
 
 const CatalogPage = () => {
     const dispatch = useDispatch();
@@ -26,18 +26,18 @@ const CatalogPage = () => {
     }
 
     return (
-        <div>
-            <h1>Campers Catalog</h1>
-            <ul>
-                {campers.map((camper) => (
-                    <li key={camper.id}>
-                        <h2>{camper.name}</h2>
-                        <p>Location: {camper.location}</p>
-                        <p>Price: {camper.price}</p>
-                        {/* Add more camper details */}
-                    </li>
-                ))}
-            </ul>
+        <div className={styles.catalogPage}>
+            <aside className={styles.filters}>
+                <FilterPanel />
+            </aside>
+            <main className={styles.campersList}>
+                <h1>Campers Catalog</h1>
+                <div className={styles.cards}>
+                    {campers.map((camper) => (
+                        <CamperCard key={camper.id} camper={camper} />
+                    ))}
+                </div>
+            </main>
         </div>
     );
 };

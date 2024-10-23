@@ -1,10 +1,11 @@
-import { createSlice } from '@reduxjs/toolkit';
+// File: src/redux/filters/filtersSlice.js
+import { createSlice } from "@reduxjs/toolkit";
 
 const filtersSlice = createSlice({
-    name: 'filters',
+    name: "filters",
     initialState: {
-        location: '',
-        vehicleType: '',
+        location: "",
+        vehicleType: "",
         features: [],
     },
     reducers: {
@@ -14,11 +15,24 @@ const filtersSlice = createSlice({
         setVehicleTypeFilter(state, action) {
             state.vehicleType = action.payload;
         },
-        setFeaturesFilter(state, action) {
-            state.features = action.payload;
+        addFeatureFilter(state, action) {
+            if (!state.features.includes(action.payload)) {
+                state.features.push(action.payload);
+            }
+        },
+        removeFeatureFilter(state, action) {
+            state.features = state.features.filter(
+                (feature) => feature !== action.payload
+            );
         },
     },
 });
 
-export const { setLocationFilter, setVehicleTypeFilter, setFeaturesFilter } = filtersSlice.actions;
+export const {
+    setLocationFilter,
+    setVehicleTypeFilter,
+    addFeatureFilter,
+    removeFeatureFilter,
+} = filtersSlice.actions;
+
 export default filtersSlice.reducer;

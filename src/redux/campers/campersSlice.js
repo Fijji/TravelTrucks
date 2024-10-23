@@ -33,7 +33,6 @@ const campersSlice = createSlice({
                 state.error = null;
             })
             .addCase(fetchCamperById.fulfilled, (state, action) => {
-                // Find the camper by ID or add it if it doesn't exist
                 const camperIndex = state.items.findIndex((camper) => camper.id === action.payload.id);
                 if (camperIndex !== -1) {
                     state.items[camperIndex] = action.payload;

@@ -1,0 +1,24 @@
+.catalogPage {
+    display: flex;
+    gap: 20px;
+    padding: 20px;
+}
+
+.filters {
+    width: 25%;
+}
+
+.campersList {
+    width: 75%;
+}
+
+.campersList h1 {
+    margin-bottom: 20px;
+    font-size: 32px;
+}
+
+.cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+}

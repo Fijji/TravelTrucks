@@ -1,0 +1,143 @@
+.filterPanel {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  background-color: var(--white-color);
+  border-radius: 8px;
+  max-width: 360px;
+  margin-left: 64px;
+}
+
+.title {
+  margin-bottom: 15px;
+  font-weight: 500;
+  color: var(--text-color);
+  font-size: 16px;
+  line-height: 24px;
+  text-align: left;
+}
+
+.subtitle {
+  margin-top: 15px;
+  font-size: 16px;
+  color: var(--gray-color);
+  font-weight: 400;
+  line-height: 24px;
+  text-align: left;
+}
+
+.subtitleVehicle {
+  color: var(--main-color);
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 24px;
+  text-align: left;
+}
+
+.subtitleVehicle::after {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 2px;
+  background-color: var(--gray-light-color);
+  margin-top: 24px;
+  margin-bottom: 24px;
+}
+
+.locationInputContainer {
+  position: relative;
+  width: 100%;
+  margin-bottom: 40px;
+  color: var(--text-color);
+}
+
+.locationIcon {
+  position: absolute;
+  left: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 18px;
+  height: 18px;
+  color: #333;
+}
+
+.locationInput {
+  width: 100%;
+  padding: 12px 12px 12px 50px;
+  border: 1px solid var(--white-color);
+  border-radius: 8px;
+  font-size: 14px;
+  box-sizing: border-box;
+  background: var(--imputs-color);
+}
+
+.featureGrid,
+.typeGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin-top: 12px;
+  margin-bottom: 24px;
+}
+
+.featureButton,
+.typeButton {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 96px;
+  height: 96px;
+  padding: 0;
+  gap: 8px;
+  color: var(--main-color);
+  border: 1px solid var(--gray-light-color);
+  border-radius: 8px;
+  background-color: var(--white-color);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-sizing: border-box;
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+}
+
+.featureButton:hover,
+.typeButton:hover {
+  border-color: var(--button-color);
+  color: var(--button-color);
+}
+
+.selected {
+  background-color: var(--button-color);
+  color: var(--white-color);
+  border: 1px solid var(--button-color);
+}
+
+.searchButtonContainer {
+  display: flex;
+  justify-content: left;
+  width: 100%;
+  margin-top: 20px;
+}
+
+.searchButton {
+  border-radius: 200px;
+  background-color: var(--button-color);
+  color: var(--white-color);
+  font-size: 18px;
+  text-decoration: none;
+  width: 100%;
+  max-width: 200px;
+  height: 56px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.searchButton:hover {
+  background-color: var(--button-hover-color);
+}
