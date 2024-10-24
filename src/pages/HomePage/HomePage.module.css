@@ -38,7 +38,9 @@
   font-size: 24px;
   margin-bottom: 40px;
   letter-spacing: 0;
+  color: var(--imputs-color);
 }
+
 .btn-view-now {
   display: inline-block;
   padding: 15px 30px;

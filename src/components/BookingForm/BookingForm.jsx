@@ -1,27 +1,100 @@
-import React from 'react';
-import styles from './BookingForm.module.css';
+import React, { useState } from "react";
+import { Formik, Form, Field, ErrorMessage } from "formik";
+import DatePicker from "react-datepicker";
+import * as Yup from "yup";
+import "react-datepicker/dist/react-datepicker.css";
+import styles from "./BookingForm.module.css";
 
 const BookingForm = ({ camperId }) => {
-    const handleSubmit = (event) => {
-        event.preventDefault();
-        // Handle form submission logic
-    };
+  const [startDate, setStartDate] = useState(null);
 
-    return (
-        <form onSubmit={handleSubmit} className={styles.bookingForm}>
-            <h3>Book your camper van now</h3>
-            <p>Stay connected! We are always ready to help you.</p>
-            <label>Name*</label>
-            <input type="text" name="name" required />
-            <label>Email*</label>
-            <input type="email" name="email" required />
-            <label>Booking date*</label>
-            <input type="date" name="date" required />
-            <label>Comment</label>
-            <textarea name="comment" rows="3"></textarea>
-            <button type="submit">Send</button>
-        </form>
-    );
+  const validationSchema = Yup.object({
+    name: Yup.string().required("Name is required"),
+    email: Yup.string()
+      .email("Invalid email address")
+      .required("Email is required"),
+    bookingDate: Yup.date().required("Booking date is required"),
+    comment: Yup.string(),
+  });
+
+  const initialValues = {
+    name: "",
+    email: "",
+    bookingDate: "",
+    comment: "",
+  };
+
+  const handleSubmit = (values, { resetForm }) => {
+    alert("Booking Successful!");
+    console.log("Booking details:", {
+      ...values,
+      bookingDate: startDate,
+      camperId,
+    });
+    resetForm();
+  };
+
+  return (
+    <div className={styles.bookingForm}>
+      <h3>Book your campervan now</h3>
+      <p>Stay connected! We are always ready to help you.</p>
+      <Formik
+        initialValues={initialValues}
+        validationSchema={validationSchema}
+        onSubmit={handleSubmit}
+      >
+        {({ errors, touched }) => (
+          <Form>
+            <div className={styles.formGroup}>
+              <Field name="name" placeholder="Name*" className={styles.input} />
+              {errors.name && touched.name && (
+                <div className={styles.error}>{errors.name}</div>
+              )}
+            </div>
+            <div className={styles.formGroup}>
+              <Field
+                name="email"
+                placeholder="Email*"
+                className={styles.input}
+              />
+              {errors.email && touched.email && (
+                <div className={styles.error}>{errors.email}</div>
+              )}
+            </div>
+            <div className={styles.formGroup}>
+              <DatePicker
+                selected={startDate}
+                onChange={(date) => setStartDate(date)}
+                dateFormat="MMMM d, yyyy"
+                placeholderText="Booking date*"
+                className={styles.input}
+                name="bookingDate"
+                required
+              />
+              <ErrorMessage
+                name="bookingDate"
+                component="div"
+                className={styles.error}
+              />
+            </div>
+            <div className={styles.formGroup}>
+              <Field
+                as="textarea"
+                name="comment"
+                placeholder="Comment"
+                className={styles.textarea}
+              />
+            </div>
+            <div className={styles.buttonContainer}>
+              <button type="submit" className={styles.submitButton}>
+                Send
+              </button>
+            </div>
+          </Form>
+        )}
+      </Formik>
+    </div>
+  );
 };
 
 export default BookingForm;

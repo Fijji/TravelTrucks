@@ -1,39 +1,91 @@
 .bookingForm {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    max-width: 400px;
-    background-color: #f9f9f9;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  background-color: #fff;
+  border: 1px solid rgb(218, 221, 225);
+  border-radius: 10px;
+  justify-content: center;
+  box-sizing: border-box;
 }
 
-.bookingForm h3 {
-    margin-bottom: 10px;
+h3 {
+  margin-bottom: 5px;
+  color: var(--main-color);
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 24px;
 }
 
-.bookingForm label {
-    font-weight: bold;
+p {
+  margin-bottom: 24px;
+  color: var(--text-color);
+  font-size: 16px;
+  align-self: stretch;
 }
 
-.bookingForm input,
-.bookingForm textarea {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
+.formGroup {
+  margin-bottom: 15px;
+  display: flex;
+  flex-direction: column;
 }
 
-.bookingForm button {
-    background-color: #ff4040;
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
+.label {
+  font-size: 14px;
+  color: #333;
+  margin-bottom: 5px;
 }
 
-.bookingForm button:hover {
-    background-color: #ff2d2d;
+.input,
+.textarea {
+  width: 100%;
+  padding: 12px 15px;
+  border: 1px solid #ccc;
+  background-color: var(--imputs-color);
+  font-size: 16px;
+  color: #333;
+  transition: border-color 0.3s ease;
+  box-sizing: border-box;
+  border-radius: 12px;
+}
+
+.input:focus,
+.textarea:focus {
+  border-color: #ff433d;
+  outline: none;
+}
+
+.textarea {
+  height: 120px;
+  resize: none;
+}
+
+.error {
+  color: #ff433d;
+  font-size: 12px;
+  margin-top: 5px;
+}
+.buttonContainer {
+  display: flex;
+  justify-content: center;
+}
+
+.submitButton {
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  display: inline-block;
+  border-radius: 200px;
+  background-color: var(--button-color);
+  color: white;
+  font-size: 18px;
+  text-decoration: none;
+  margin: 0 auto;
+  width: 166px;
+  height: 56px;
+  padding: 16px 60px 16px 60px;
+}
+
+.submitButton:hover {
+  background-color: var(--button-hover-color);
 }
