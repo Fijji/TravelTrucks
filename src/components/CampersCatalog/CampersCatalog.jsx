@@ -1,4 +1,3 @@
-// CampersCatalog.jsx
 import React, { useState } from 'react';
 import CamperCard from '../CamperCard/CamperCard';
 import styles from './CampersCatalog.module.css';

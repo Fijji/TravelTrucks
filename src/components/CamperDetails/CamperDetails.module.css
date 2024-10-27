@@ -1,6 +1,6 @@
 .camperDetails {
-  max-width: 1200px; /* Increase the container width */
-  margin: 0 auto; /* Center the container */
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 .camperDetails h2 {
@@ -21,6 +21,11 @@
   margin-bottom: 60px;
 }
 
+.clickable{
+  text-decoration: underline;
+  cursor: pointer;
+}
+
 .gallery {
   display: flex;
   flex-direction: row;
@@ -29,7 +34,9 @@
 }
 
 .starIcon {
-  color: #ffd700;
+  color: var(--rating-color);
+  width: 16px;
+  height: 16px;
 }
 
 .cardMeta {
@@ -70,4 +77,10 @@
 
 .price p {
   color: var(--main-color);
+}
+
+.icon {
+  width: 16px;
+  height: 16px;
+  fill: var(--main-color);
 }

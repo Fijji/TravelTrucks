@@ -1,8 +1,12 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
-import styles from "./AppBarr.module.css"; // Import as CSS Module
+import { NavLink, useLocation } from "react-router-dom";
+import styles from "./AppBarr.module.css";
 
 const AppBarr = () => {
+  const location = useLocation();
+
+  const isCatalogActive = location.pathname === "/catalog";
+
   return (
     <header className={styles.appbar}>
       <div className={styles.logo}>
@@ -21,8 +25,10 @@ const AppBarr = () => {
         </NavLink>
         <NavLink
           to="/catalog"
-          className={({ isActive }) =>
-            isActive ? `${styles.navLink} ${styles.activeLink}` : styles.navLink
+          className={
+            isCatalogActive
+              ? `${styles.navLink} ${styles.activeLink}`
+              : styles.navLink
           }
         >
           Catalog

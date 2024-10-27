@@ -1,60 +1,56 @@
-import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useState } from "react";
+import { useDispatch } from "react-redux";
 import {
   setLocationFilter,
   setVehicleTypeFilter,
   addFeatureFilter,
-  removeFeatureFilter,
+  clearFeaturesFilter,
 } from "../../redux/filters/filtersSlice";
 import styles from "./FilterPanel.module.css";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faMap,
-  faWind,
-  faCogs,
-  faCoffee,
-  faTv,
-  faShower,
-  faVanShuttle,
-  faLayerGroup,
-  faCubes,
-} from "@fortawesome/free-solid-svg-icons";
+import IconMap from "../Icons/IconMap";
+import IconWind from "../Icons/IconWind";
+import IconDiagram from "../Icons/IconDiagram";
+import IconCupHot from "../Icons/IconCupHot";
+import IconTV from "../Icons/IconTV";
+import IconShower from "../Icons/IconShower";
+import IconVan from "../Icons/IconVan";
+import IconIntegrated from "../Icons/IconIntegrated";
+import IconAlcove from "../Icons/IconAlcove";
+
+const availableFeatures = [
+  { label: "AC", icon: IconWind },
+  { label: "Automatic", icon: IconDiagram },
+  { label: "Kitchen", icon: IconCupHot },
+  { label: "TV", icon: IconTV },
+  { label: "Bathroom", icon: IconShower },
+];
 
 const FilterPanel = () => {
   const dispatch = useDispatch();
-  const availableFeatures = [
-    { label: "AC", icon: faWind },
-    { label: "Automatic", icon: faCogs },
-    { label: "Kitchen", icon: faCoffee },
-    { label: "TV", icon: faTv },
-    { label: "Bathroom", icon: faShower },
-  ];
   const [tempSelectedFeatures, setTempSelectedFeatures] = useState([]);
   const [tempVehicleType, setTempVehicleType] = useState("");
-
-  const location = useSelector((state) => state.filters.location);
+  const [tempLocation, setTempLocation] = useState("");
 
   const handleLocationChange = (e) => {
-    dispatch(setLocationFilter(e.target.value));
+    setTempLocation(e.target.value);
   };
 
   const handleFeatureToggle = (feature) => {
-    if (tempSelectedFeatures.includes(feature)) {
-      setTempSelectedFeatures((prev) =>
-        prev.filter((selectedFeature) => selectedFeature !== feature),
-      );
-    } else {
-      setTempSelectedFeatures((prev) => [...prev, feature]);
-    }
+    setTempSelectedFeatures((prev) =>
+      prev.includes(feature)
+        ? prev.filter((selectedFeature) => selectedFeature !== feature)
+        : [...prev, feature],
+    );
   };
 
   const handleVehicleTypeChange = (type) => {
-    setTempVehicleType(type);
+    setTempVehicleType((prev) => (prev === type ? "" : type));
   };
 
   const handleSearchClick = () => {
-    // Dispatch temporary filters to the global state
+    dispatch(setLocationFilter(tempLocation));
     dispatch(setVehicleTypeFilter(tempVehicleType));
+    dispatch(clearFeaturesFilter());
     tempSelectedFeatures.forEach((feature) =>
       dispatch(addFeatureFilter(feature)),
     );
@@ -64,12 +60,12 @@ const FilterPanel = () => {
     <div className={styles.filterPanel}>
       <div className={styles.subtitle}>Location</div>
       <div className={styles.locationInputContainer}>
-        <FontAwesomeIcon icon={faMap} className={styles.locationIcon} />
+        <IconMap className={styles.locationIcon} />
         <input
           className={styles.locationInput}
           type="text"
           placeholder="Enter location"
-          value={location}
+          value={tempLocation}
           onChange={handleLocationChange}
         />
       </div>
@@ -87,7 +83,7 @@ const FilterPanel = () => {
             }`}
             onClick={() => handleFeatureToggle(feature.label)}
           >
-            <FontAwesomeIcon icon={feature.icon} className={styles.typeIcon} />
+            <feature.icon className={styles.typeIcon} />
             <span>{feature.label}</span>
           </button>
         ))}
@@ -96,9 +92,9 @@ const FilterPanel = () => {
       <div className={styles.subtitleVehicle}>Vehicle type</div>
       <div className={styles.typeGrid}>
         {[
-          { label: "Van", icon: faVanShuttle },
-          { label: "Fully Integrated", icon: faLayerGroup },
-          { label: "Alcove", icon: faCubes },
+          { label: "Van", icon: IconVan },
+          { label: "Fully Integrated", icon: IconIntegrated },
+          { label: "Alcove", icon: IconAlcove },
         ].map((type) => (
           <button
             key={type.label}
@@ -107,13 +103,15 @@ const FilterPanel = () => {
             }`}
             onClick={() => handleVehicleTypeChange(type.label)}
           >
-            <FontAwesomeIcon icon={type.icon} className={styles.typeIcon} />
+            <type.icon className={styles.typeIcon} />
             <span>{type.label}</span>
           </button>
         ))}
       </div>
       <div className={styles.searchButtonContainer}>
-        <button className={styles.searchButton}>Search</button>
+        <button className={styles.searchButton} onClick={handleSearchClick}>
+          Search
+        </button>
       </div>
     </div>
   );

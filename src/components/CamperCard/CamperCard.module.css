@@ -18,11 +18,13 @@
   min-height: 320px;
   align-content: center;
 }
+
 .priceFavorite {
   display: flex;
   align-items: center;
   gap: 5px;
 }
+
 .cardMeta {
   display: flex;
   align-items: center;
@@ -61,6 +63,8 @@
 
 .starIcon {
   color: #ffd700;
+  width: 16px;
+  height: 16px;
 }
 
 .location {
@@ -71,6 +75,13 @@
 
 .favoriteIcon {
   cursor: pointer;
+  color: gray;
+  width: 24px;
+  height: 21px;
+}
+
+.favorited {
+  color: #e44848;
 }
 
 .description {
@@ -98,6 +109,11 @@
   color: #333;
 }
 
+.icon {
+  width: 16px;
+  height: 16px;
+}
+
 .showMoreButton {
   border-radius: 200px;
   background-color: var(--button-color);
@@ -114,4 +130,9 @@
 
 .showMoreButton:hover {
   background-color: var(--button-hover-color);
+}
+
+.clickable{
+  text-decoration: underline;
+  cursor: pointer;
 }

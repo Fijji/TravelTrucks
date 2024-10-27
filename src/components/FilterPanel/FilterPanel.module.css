@@ -45,8 +45,9 @@
 }
 
 .typeIcon {
-    width: 32px;
-    height: 28px;
+  width: 32px;
+  height: 32px;
+  fill: var(--main-color);
 }
 
 .locationInputContainer {

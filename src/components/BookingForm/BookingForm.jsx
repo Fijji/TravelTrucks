@@ -13,14 +13,14 @@ const BookingForm = ({ camperId }) => {
     email: Yup.string()
       .email("Invalid email address")
       .required("Email is required"),
-    bookingDate: Yup.date().required("Booking date is required"),
+    bookingDate: Yup.date().required("Booking date is required").nullable(),
     comment: Yup.string(),
   });
 
   const initialValues = {
     name: "",
     email: "",
-    bookingDate: "",
+    bookingDate: null,
     comment: "",
   };
 
@@ -65,7 +65,7 @@ const BookingForm = ({ camperId }) => {
               <DatePicker
                 selected={startDate}
                 onChange={(date) => setStartDate(date)}
-                dateFormat="MMMM d, yyyy"
+                dateFormat="dd/MM/yyyy"
                 placeholderText="Booking date*"
                 className={styles.input}
                 name="bookingDate"
