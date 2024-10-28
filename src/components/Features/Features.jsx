@@ -1,4 +1,3 @@
-import React from "react";
 import { useOutletContext } from "react-router-dom";
 import styles from "./Features.module.css";
 import IconWind from "../Icons/IconWind";

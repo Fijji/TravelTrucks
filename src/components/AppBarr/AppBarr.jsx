@@ -1,15 +1,23 @@
-import React from "react";
-import { NavLink, useLocation } from "react-router-dom";
+import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import styles from "./AppBarr.module.css";
 
 const AppBarr = () => {
   const location = useLocation();
+  const navigate = useNavigate();
 
   const isCatalogActive = location.pathname === "/catalog";
 
+  const handleLogoClick = () => {
+    navigate("/");
+  };
+
   return (
     <header className={styles.appbar}>
-      <div className={styles.logo}>
+      <div
+        className={styles.logo}
+        onClick={handleLogoClick}
+        style={{ cursor: "pointer" }}
+      >
         <span className={styles.logoTravel}>Travel</span>
         <span className={styles.logoTrucks}>Trucks</span>
       </div>

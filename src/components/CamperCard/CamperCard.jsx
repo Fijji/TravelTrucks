@@ -1,6 +1,5 @@
-import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom"; // Import useNavigate
+import { useNavigate } from "react-router-dom";
 import styles from "./CamperCard.module.css";
 import IconMap from "../Icons/IconMap";
 import IconRatingGold from "../Icons/IconRatingGold";
@@ -51,85 +50,85 @@ const CamperCard = ({ camper }) => {
   };
 
   const handleRatingClick = () => {
-    navigate(`/catalog/${camper.id}/reviews`); // Navigate to the reviews path
+    navigate(`/catalog/${camper.id}/reviews`);
   };
 
   const primaryImage =
-      camper.gallery && camper.gallery.length > 0 ? camper.gallery[0].thumb : "";
+    camper.gallery && camper.gallery.length > 0 ? camper.gallery[0].thumb : "";
   const formattedPrice = camper.price.toLocaleString("uk-UA", {
     minimumFractionDigits: 2,
     maximumFractionDigits: 2,
   });
 
   return (
-      <div className={styles.camperCard}>
-        {primaryImage && (
-            <div className={styles.imageContainer}>
-              <img src={primaryImage} alt={camper.name} />
-            </div>
-        )}
-        <div className={styles.cardContent}>
-          <div className={styles.header}>
-            <h2 className={styles.title}>{camper.name}</h2>
-            <div className={styles.priceFavorite}>
-              <h2 className={styles.price}>€{formattedPrice}</h2>
-              {isFavorite ? (
-                  <IconHeartRed
-                      className={`${styles.favoriteIcon} ${styles.favorited}`}
-                      onClick={handleFavoriteToggle}
-                  />
-              ) : (
-                  <IconDefaultHeart
-                      className={styles.favoriteIcon}
-                      onClick={handleFavoriteToggle}
-                  />
-              )}
-            </div>
+    <div className={styles.camperCard}>
+      {primaryImage && (
+        <div className={styles.imageContainer}>
+          <img src={primaryImage} alt={camper.name} />
+        </div>
+      )}
+      <div className={styles.cardContent}>
+        <div className={styles.header}>
+          <h2 className={styles.title}>{camper.name}</h2>
+          <div className={styles.priceFavorite}>
+            <h2 className={styles.price}>€{formattedPrice}</h2>
+            {isFavorite ? (
+              <IconHeartRed
+                className={`${styles.favoriteIcon} ${styles.favorited}`}
+                onClick={handleFavoriteToggle}
+              />
+            ) : (
+              <IconDefaultHeart
+                className={styles.favoriteIcon}
+                onClick={handleFavoriteToggle}
+              />
+            )}
           </div>
+        </div>
 
-          <div className={styles.cardMeta}>
+        <div className={styles.cardMeta}>
           <span
-              className={`${styles.rating} ${styles.clickable}`}
-              onClick={handleRatingClick}
+            className={`${styles.rating} ${styles.clickable}`}
+            onClick={handleRatingClick}
           >
             <IconRatingGold className={styles.starIcon} />
             {camper.rating} ({camper.reviews.length} Reviews)
           </span>
-            <span className={styles.location}>
+          <span className={styles.location}>
             <IconMap className={styles.icon} /> {camper.location}
           </span>
-          </div>
-
-          {camper.description && typeof camper.description === "string" && (
-              <p className={styles.description}>{camper.description}</p>
-          )}
-
-          <div className={styles.features}>
-            {Object.entries(features).map(
-                ([featureKey, { icon: IconComponent, name }]) => {
-                  const featureValue = camper[featureKey];
-
-                  return (
-                      featureValue && (
-                          <span key={featureKey} className={styles.featureIcon}>
-                    <IconComponent className={styles.icon} />
-                            {typeof featureValue === "boolean" ? name : featureValue}
-                  </span>
-                      )
-                  );
-                },
-            )}
-          </div>
-          <a
-              href={`/catalog/${camper.id}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              className={styles.showMoreButton}
-          >
-            Show more
-          </a>
         </div>
+
+        {camper.description && typeof camper.description === "string" && (
+          <p className={styles.description}>{camper.description}</p>
+        )}
+
+        <div className={styles.features}>
+          {Object.entries(features).map(
+            ([featureKey, { icon: IconComponent, name }]) => {
+              const featureValue = camper[featureKey];
+
+              return (
+                featureValue && (
+                  <span key={featureKey} className={styles.featureIcon}>
+                    <IconComponent className={styles.icon} />
+                    {typeof featureValue === "boolean" ? name : featureValue}
+                  </span>
+                )
+              );
+            },
+          )}
+        </div>
+        <a
+          href={`/catalog/${camper.id}`}
+          target="_blank"
+          rel="noopener noreferrer"
+          className={styles.showMoreButton}
+        >
+          Show more
+        </a>
       </div>
+    </div>
   );
 };
 

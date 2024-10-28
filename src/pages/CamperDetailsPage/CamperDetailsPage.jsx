@@ -8,20 +8,27 @@ import {
 } from "../../redux/campers/campersSelectors.js";
 import CamperDetails from "../../components/CamperDetails/CamperDetails";
 import BookingForm from "../../components/BookingForm/BookingForm";
+import DotLoader from "react-spinners/ClipLoader";
 import styles from "./CamperDetailsPage.module.css";
 
 const CamperDetailsPage = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
   const camper = useSelector((state) => selectCamperById(state, id));
-  const loading = useSelector(selectCampersLoading);
+  const isLoading = useSelector(selectCampersLoading);
   const location = useLocation();
 
   useEffect(() => {
     dispatch(fetchCamperById(id));
   }, [dispatch, id]);
 
-  if (loading) return <div>Loading...</div>;
+  if (isLoading) {
+    return (
+      <div className="loaderContainer">
+        <DotLoader className="loader" />
+      </div>
+    );
+  }
 
   return (
     <div className={styles.detailsPage}>
